@@ -1,0 +1,8 @@
+{
+  "name": "speech-code",
+  "author": "mamoru-kun",
+  "description": "Russian text generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}
