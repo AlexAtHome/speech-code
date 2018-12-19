@@ -1,9 +1,18 @@
 {
   "name": "speech-code",
   "author": "mamoru-kun",
-  "keywords": ["russian", "text", "speech", "lorem ipsum", "lorem", "loremru", "ru", "russia"],
+  "keywords": [
+    "russian",
+    "text",
+    "speech",
+    "lorem ipsum",
+    "lorem",
+    "loremru",
+    "ru",
+    "russia"
+  ],
   "description": "Russian text generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "license": "MIT"
 }
