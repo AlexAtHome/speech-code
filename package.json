@@ -14,5 +14,6 @@
   "description": "Russian text generator",
   "version": "1.0.3",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "types": "index.d.ts"
 }
