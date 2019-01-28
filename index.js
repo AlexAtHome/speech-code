@@ -1,21 +1,23 @@
 'use strict'
 
-const sentenceParts = require('./sentence-parts.json')
+const table = require('./sentence-parts.json')
 
-const randomValueFrom = array => {
-  let index = ~~(array.length * Math.random())
-  return array[index]
+/** Получает рандомной значение из массива */
+const random = array => {
+  const i = ~~(array.length * Math.random())
+  return array[i]
 }
 
 /**
  * Выстраивает предложение
  */
 const buildSentence = () => {
-  let result = []
-  result.push(randomValueFrom(sentenceParts.first))
-  result.push(randomValueFrom(sentenceParts.second))
-  result.push(randomValueFrom(sentenceParts.third))
-  result.push(randomValueFrom(sentenceParts.fourth))
+  let result = [
+    random(table.first),
+    random(table.second),
+    random(table.third),
+    random(table.fourth)
+  ]
   if (result[0].endsWith('!') || result[0].endsWith('.')) {
     result[1] = result[1].replace(/^./, result[1].slice(0, 1).toUpperCase())
   }
