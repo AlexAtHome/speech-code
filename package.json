@@ -19,5 +19,6 @@
     "version": "1.0.3",
     "main": "index.js",
     "license": "MIT",
-    "types": "index.d.ts"
+    "types": "index.d.ts",
+    "bin": "bin/speech-code"
 }
