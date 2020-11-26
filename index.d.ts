@@ -1,4 +1,4 @@
-// Type definitions for speech-code 1.2.0
+// Type definitions for speech-code 1.3.0
 // Project: https://github.com/mamoruuu/speech-code
 // Definitions by: Alexander B. <https://github.com/mamoruuu>
 // Definitions: https://github.com/mamoruuu/speech-code
@@ -19,4 +19,9 @@ export namespace SpeechCode {
    * Returns a single generated sentence
    */
   export function getSentence(): string;
+  /**
+   * Returns a paragraph with specified number of characters
+   * @param chars - the number of characters (spaces included)
+   */
+  export function getCharacters(chars?: number = 50): string;
 }

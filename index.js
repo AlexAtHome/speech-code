@@ -6,7 +6,7 @@ const sentenceParts = require("./sentence-parts.json");
  * Отдаёт случайный элемент массива
  * @param {array} array Массив с элементами
  */
-const randomValueFrom = array => array[~~(array.length * Math.random())];
+const randomValueFrom = (array) => array[~~(array.length * Math.random())];
 
 /**
  * Выстраивает предложение
@@ -51,8 +51,50 @@ const getText = (paragraphs = 3) => {
   return result;
 };
 
+/**
+ * Строит абзац с определённым количеством символов
+ * @param {number} chars Приблизительное количество символов в абзаце
+ */
+const getCharacters = (chars = 50) => {
+  const maxRestarts = 10;
+  let restarts = 0;
+
+  let previousResult = "";
+
+  const generate = () => {
+    const maxRetries = 20;
+    let retries = 0;
+
+    let text = "";
+    while (text.length < chars && maxRetries > retries) {
+      const sentence = getSentence();
+      if (`${text} ${sentence}`.length - chars < 20) {
+        text += sentence;
+        retries = 0;
+      } else {
+        retries++;
+      }
+    }
+    if (retries === maxRetries && restarts < maxRestarts) {
+      if (text.length > previousResult.length) {
+        previousResult = text;
+      }
+      restarts++;
+      return generate();
+    }
+    return text;
+  };
+
+  let result = generate();
+  if (maxRestarts === restarts && result.length < previousResult.length) {
+    result = previousResult;
+  }
+  return result;
+};
+
 module.exports = {
   getParagraph,
   getText,
   getSentence,
+  getCharacters,
 };
