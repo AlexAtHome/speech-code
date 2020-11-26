@@ -1,7 +1,7 @@
-// Type definitions for speech-code 1.0
-// Project: https://github.com/mamoru-kun/speech-code
-// Definitions by: Alexander B. <https://github.com/mamoru-kun>
-// Definitions: https://github.com/mamoru-kun/speech-code
+// Type definitions for speech-code 1.2.0
+// Project: https://github.com/mamoruuu/speech-code
+// Definitions by: Alexander B. <https://github.com/mamoruuu>
+// Definitions: https://github.com/mamoruuu/speech-code
 
 export namespace SpeechCode {
   /**
@@ -14,7 +14,7 @@ export namespace SpeechCode {
    * Returns a paragraph consisting of given number of sentences
    * @param sentences - the number of sentences
    */
-  export function getParagraph(sentences: number): string;
+  export function getParagraph(sentences?: number = 3): string;
   /**
    * Returns a single generated sentence
    */

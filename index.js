@@ -28,7 +28,7 @@ const getSentence = () => {
  * Строит абзац из предложений
  * @param {number} sentences Число предложений в абзаце
  */
-const getParagraph = sentences => {
+const getParagraph = (sentences = 3) => {
   let result = "";
   for (let i = 0; i < sentences; i++) {
     if (i > 0) result += " ";
