@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { getText, getParagraph } = require("../index");
+const { getText, getParagraph, getSentence } = require("../index");
 
 /**
  * Type can be 'text' or 'paragraph'
@@ -16,6 +16,9 @@ if (amount !== 3) {
 }
 
 switch (type.toLowerCase()) {
+  case "sentence":
+  case "s":
+    return console.log(getSentence())
   case "text":
   case "t":
     return console.log(getText(amount));
@@ -24,17 +27,17 @@ switch (type.toLowerCase()) {
     return console.log(getParagraph(amount));
   case "help":
   case "h":
-    console.log("Usage:    speech-code [type] [number]");
+    console.log("Usage:    speech-code [type] [amount]");
     console.log("");
     console.log(
-      "Supported types: `text` (`t`) and `paragraph` (`p`). Default is `paragraph`."
+      "Supported types: `sentence` (`s`), `text` (`t`) and `paragraph` (`p`). Default is `paragraph`."
     );
     console.log(
-      "The second argument is the number of paragraphs in text or sentences in paragraph. Default is 3."
+      "The second argument is the amount of paragraphs in text or sentences in paragraph. Doesn't work for `sentence` type. Default is 3."
     );
     return;
   default:
     console.error("%cUnsupported generated text type!", "color:red");
-    console.log("Only `text` (`t`) and `paragraph` (`p`) are supported!");
+    console.log("Only `sentence` (`s`), `text` (`t`) and `paragraph` (`p`) are supported!");
     return;
 }

@@ -9,10 +9,14 @@ export namespace SpeechCode {
    * consisting of random number of sentences (from 2 to 5)
    * @param paragraphs - the number of paragraphs in the text
    */
-  export function getText(paragraphs?: Number = 3): string;
+  export function getText(paragraphs?: number = 3): string;
   /**
    * Returns a paragraph consisting of given number of sentences
    * @param sentences - the number of sentences
    */
-  export function getParagraph(sentences: Number): string;
+  export function getParagraph(sentences: number): string;
+  /**
+   * Returns a single generated sentence
+   */
+  export function getSentence(): string;
 }

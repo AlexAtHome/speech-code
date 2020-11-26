@@ -2,20 +2,22 @@
 
 const sentenceParts = require("./sentence-parts.json");
 
-const randomValueFrom = array => {
-  let index = ~~(array.length * Math.random());
-  return array[index];
-};
+/**
+ * Отдаёт случайный элемент массива
+ * @param {array} array Массив с элементами
+ */
+const randomValueFrom = array => array[~~(array.length * Math.random())];
 
 /**
  * Выстраивает предложение
  */
-const buildSentence = () => {
-  let result = [];
-  result.push(randomValueFrom(sentenceParts.first));
-  result.push(randomValueFrom(sentenceParts.second));
-  result.push(randomValueFrom(sentenceParts.third));
-  result.push(randomValueFrom(sentenceParts.fourth));
+const getSentence = () => {
+  const result = [
+    randomValueFrom(sentenceParts.first),
+    randomValueFrom(sentenceParts.second),
+    randomValueFrom(sentenceParts.third),
+    randomValueFrom(sentenceParts.fourth),
+  ];
   if (result[0].endsWith("!") || result[0].endsWith(".")) {
     result[1] = result[1].replace(/^./, result[1].slice(0, 1).toUpperCase());
   }
@@ -30,7 +32,7 @@ const getParagraph = sentences => {
   let result = "";
   for (let i = 0; i < sentences; i++) {
     if (i > 0) result += " ";
-    result += buildSentence();
+    result += getSentence();
   }
   return result;
 };
@@ -51,5 +53,6 @@ const getText = (paragraphs = 3) => {
 
 module.exports = {
   getParagraph,
-  getText
+  getText,
+  getSentence,
 };
