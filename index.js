@@ -161,9 +161,11 @@ const getCharacters = (chars = 50) => {
   return result;
 };
 
-module.exports = {
-  getParagraph,
-  getText,
-  getSentence,
-  getCharacters,
-};
+if (typeof module !== "undefined") {
+  module.exports = {
+    getParagraph,
+    getText,
+    getSentence,
+    getCharacters,
+  };
+}
