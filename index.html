@@ -117,6 +117,10 @@
       const form = document.forms["generator"]
       const outputContainer = document.getElementById('output')
       const copyButton = document.getElementById('copy')
+      
+      function copyText() {
+        copy(outputContainer.innerText)
+      }
 
       form.addEventListener('change', (event) => {
         console.log(event);
@@ -151,12 +155,9 @@
       });
 
       copyButton.addEventListener('click', function (event) {
-        window.copy(output.innerText)
+        copyText(output.innerText)
       })
 
-      function copyText() {
-        copy(outputContainer.innerText)
-      }
     </script>
   </body>
 </html>
