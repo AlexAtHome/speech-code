@@ -32,7 +32,7 @@ console.log(`Text by characters: ${textByCharacters}`)
 npx speech-code text 3
 npx speech-code paragraph 4
 npx speech-code sentence
-npx speech-code char 1000
+npx speech-code char 1000  # the length of resulting text will never be equal to specified value. It might be either shorter or longer
 
 # You can also use shorter version of types
 npx speech-code t 3
