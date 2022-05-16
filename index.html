@@ -47,6 +47,8 @@
       .card { background-color: var(--card-background); padding: 30px; border-radius: 5px; }
       main { width: 100%; flex-grow: 1; max-width: 730px; margin: 0 auto; }
       img { max-width: 100%; }
+			form { display: flex; align-items: center; flex-wrap: wrap; gap: 10px;}
+			input[name=amount] { width: 100px; }
       footer { text-align: center; }
       main, footer { padding: 15px; }
     </style>
@@ -55,10 +57,14 @@
   <body>
     <main>
       <section class="card card_generator">
-        <h1>Генератор текста на русском языке</h1>
+        <h1>Генератор текста</h1>
         <p>Создаёт грамотно построенные, но бессмысленные тексты.</p>
 
         <form name="generator">
+					<select name="lang" id="lang" value="ru" required>
+						<option value="ru">Русский язык</option>
+						<option value="en">Английский язык</option>
+					</select>
           <select name="type" id="type" value="text" required>
             <option value="text">Текст (по абзацам)</option>
             <option value="char">Текст (по кол-ву символов)</option>
@@ -107,7 +113,7 @@
     </main>
 
     <footer>
-      <a href="https://github.com/mamoruuu/speech-code" target="_blank">Форкни эту штуку в Гитхабе!</a>
+      <a href="https://github.com/AlexAtHome/speech-code" target="_blank">Форкни эту штуку в Гитхабе!</a>
     </footer>
 
     <script src="./index.js" async></script>
@@ -117,13 +123,12 @@
       const form = document.forms["generator"]
       const outputContainer = document.getElementById('output')
       const copyButton = document.getElementById('copy')
-      
+
       function copyText() {
         copy(outputContainer.innerText)
       }
 
       form.addEventListener('change', (event) => {
-        console.log(event);
         const typeControl = form.children.type
         const amountControl = form.children.amount
 
@@ -133,19 +138,20 @@
       form.addEventListener("submit", (event) => {
         event.preventDefault()
         outputContainer.parentElement.hidden = true
+				const lang = form.children.lang.value
         const amount = form.children.amount.value
         switch (form.children.type.value) {
           case 'sentence':
-            outputContainer.innerText = getSentence()
+            outputContainer.innerText = getSentence(lang)
             break;
           case 'text':
-            outputContainer.innerText = getText(amount)
+            outputContainer.innerText = getText(amount, lang)
             break;
           case 'char':
-            outputContainer.innerText = getCharacters(amount)
+            outputContainer.innerText = getCharacters(amount, lang)
             break;
           case 'paragraph':
-            outputContainer.innerText = getParagraph(amount)
+            outputContainer.innerText = getParagraph(amount, lang)
             break;
           default:
             return;
