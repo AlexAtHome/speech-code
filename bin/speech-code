@@ -10,32 +10,41 @@ const {
 /**
  * Type can be 'text' or 'paragraph'
  */
-let [type = "paragraph", amount = 3] = process.argv.slice(2);
+let [type = "paragraph", amount = 3, lang = 'ru'] = process.argv.slice(2);
 if (amount !== 3) {
   amount = Number(amount);
 
   if (isNaN(amount)) {
     console.error("The second argument should be a number!");
-    return;
+    process.exit(1)
   }
+}
+
+if (!['ru', 'en'].includes(lang)) {
+	console.error('The supported languages are \'ru\' and \'en\'')
+	process.exit(3)
 }
 
 switch (type.toLowerCase()) {
   case "sentence":
   case "s":
-    return console.log(getSentence());
+    console.log(getSentence(lang));
+		break;
   case "text":
   case "t":
-    return console.log(getText(amount));
+    console.log(getText(amount, lang));
+		break
   case "paragraph":
   case "p":
-    return console.log(getParagraph(amount));
+    console.log(getParagraph(amount, lang));
+		break
   case "char":
   case "c":
-    return console.log(getCharacters(amount));
+    console.log(getCharacters(amount, lang));
+		break
   case "help":
   case "h":
-    console.log("Usage:    speech-code [type] [amount]");
+    console.log("Usage:    speech-code [type] [amount] [lang]");
     console.log("");
     console.log(
       "Supported types: `char` (`c`), `sentence` (`s`), `text` (`t`) and `paragraph` (`p`). Default is `paragraph`."
@@ -43,11 +52,13 @@ switch (type.toLowerCase()) {
     console.log(
       "The second argument is the amount of paragraphs in text or sentences in paragraph. Doesn't work for `sentence` type. Default is 3."
     );
-    return;
+		console.log("Supported languages: `ru`, `en`. Default is `ru`.")
+    break
   default:
     console.error("%cUnsupported generated text type!", "color:red");
     console.log(
       "Only `char` (`c`), `sentence` (`s`), `text` (`t`) and `paragraph` (`p`) are supported!"
     );
-    return;
+    process.exit(2)
+		break
 }
