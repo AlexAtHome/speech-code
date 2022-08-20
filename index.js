@@ -43,14 +43,14 @@ const sentenceParts = {
 			"обеспечивает широкому кругу специалистов",
 			"позволяет выполнять важные задания по разработке",
 			"в значительной степени обуславливает создание",
-			"позволяет оценить значение представляет собой интересный эксперимент",
-			"проверки влечёт за собой интересный процесс внедрения модернизации",
+			"позволяет оценить значение",
+			"представляет собой интересный эксперимент",
+			"влечёт за собой интересный процесс внедрения модернизации",
 			"способствует повышению качества",
 			"обеспечивает актуальность",
 			"требует анализа",
 			"напрямую зависит от",
-			"создаёт предпосылки качественно новых шагов для",
-			"играет важную роль в формировании"
+			"создаёт предпосылки качественно новых шагов для"
 		],
 		[
 			"существующий финансовых и административных условий.",
@@ -72,10 +72,52 @@ const sentenceParts = {
 		]
 	],
 	en: [
-		['Part 1,'],
-		['then part 2'],
-		['then part 3'],
-		['and then part 4.']
+		[
+			'On the other hand',
+			'Likewise',
+			'However, one should not forget',
+			'Thus',
+			'The significance of such problems is so obvious that',
+			'The diverse and plentiful experience',
+			'There\'s no doubt that',
+			'It should be noted that'
+		],
+		[
+			'the implementation of the planned tasks',
+			'the bounds and place of personnel training',
+			'constant quantitive growth and the scope of our activity',
+			'the established organisation structure',
+			'new model of the organisational activity',
+			'further development of various forms of activity',
+			'social economic development',
+			'the innovational path that we have chosen',
+			'hi-tech concept of the social system',
+			'the understanding of nature of resource saving technologies'
+		],
+		[
+			'plays an important part in the formation of',
+			'requires the analysis of',
+			'requires the clarification of',
+			'contributes to the preparing and implementation of',
+			'allows to complete important implementation tasks of',
+			'significantly conditions the creation of',
+			'allows to appreciate the value of',
+			'represents an interesting experiment of',
+			'contributes to increasing the quality of',
+			'directly depends on',
+		],
+		[
+			'existing financial and administrative conditions.',
+			'further ways of development.',
+			'the system of mass participation.',
+			'the position that is taken by the participants in relation to tasks.',
+			'new propositions.',
+			'forms of influence.',
+			'the tasks given by the society and government.',
+			'strengthening the democratic system.',
+			'the step-by-step consistent development of the society.',
+			'economic practicability of decisions made.'
+		]
 	]
 };
 
