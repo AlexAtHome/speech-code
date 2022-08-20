@@ -16,13 +16,15 @@ npm install speech-code
 import { getText, getParagraph, getSentence } from 'speech-code'
 
 const sentence = getSentence()
+const englishSentence = getSentence('en')
 const text = getText()
 const paragraph = getParagraph(5)
+const englishParagraph = getParagraph(4, 'en')
 const textByCharacters = getCharacters(1000)
 
-console.log(`Sentence: ${sentence}`)
+console.log(`Sentence: ${sentence}. In english: ${englishSentence}`)
 console.log(`Text: ${text}`)
-console.log(`Paragraph: ${paragraph}`)
+console.log(`Paragraph: ${paragraph}. In english: ${englishParagraph}`)
 console.log(`Text by characters: ${textByCharacters}`)
 ```
 
@@ -42,4 +44,11 @@ npx speech-code c 1000
 
 # Not specifying type and amount returns a paragraph with 3 sentences by default
 npx speech-code
+```
+
+You can also specify the language of the text in an optional third argument. Accepted languages are `ru` and `en`. Default language is Russian.
+
+```sh
+npx speech-code text 3 ru
+npx speech-code sentence 2 en
 ```
