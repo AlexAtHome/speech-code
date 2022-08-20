@@ -1,5 +1,7 @@
 .editorconfig
 .github
 .gitignore
+.npmignore
 index.html
 style.css
+.prettierrc.yml
