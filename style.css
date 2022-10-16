@@ -1,89 +1,217 @@
-code {
-  font-family: 'Cascadia Code', 'JetBrains Mono', "Menlo", 'Courier New', Courier, monospace;
+* {
+	box-sizing: border-box;
 }
 
-h1:first-child,
-h2:first-child,
-h3:first-child,
-h4:first-child,
-h5:first-child,
-h6:first-child {
-  margin-top: 0;
+:root {
+	color-scheme: dark light;
+	--color-pinky: #f181cb;
+	--color-purple: #c4a0fd;
+	--color-blue: #3b70da;
+	--color-dark-1: #252525;
+	--color-dark-2: #333333;
+	--color-light-1: #eaeaea;
+	--color-light-2: #fefefe;
+
+	--background: var(--color-light-1);
+	--card-background: var(--color-light-2);
+	--text: var(--color-dark-1);
+	--text-invert: var(--color-light-2);
+	--link-color: var(--color-pinky);
+	--link-color-visited: var(--color-purple);
+}
+
+@media (prefers-color-scheme: dark) {
+	html:root {
+		--background: var(--color-dark-2);
+		--card-background: var(--color-dark-1);
+		--text: var(--color-light-2);
+		--text-invert: var(--color-dark-1);
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	html:root {
+		--background: var(--color-light-2);
+		--card-background: var(--color-light-1);
+		--text: var(--color-dark-2);
+		--text-invert: var(--color-light-1);
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	background-color: var(--background);
+	color: var(--text);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	font-size: 1rem;
+}
+
+a {
+	color: var(--link-color);
+}
+
+a:visited {
+	color: var(--link-color-visited);
+}
+
+main {
+	display: grid;
+	width: 100%;
 }
 
 .card {
-  position: relative;
-  margin: 15px auto;
+	background-color: var(--card-background);
+	padding: 30px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	position: relative;
 }
 
-.card_generator {
-  margin-top: 20vh;
+.card__links {
+	display: flex;
+	list-style: none;
+	align-items: center;
+	padding: 0;
+	margin: 0;
+	gap: 15px;
+	flex-wrap: wrap;
 }
 
 .output {
-  margin-top: 30px;
+	padding: 20px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.form__footer {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+@media screen and (min-width: 990px) {
+	main {
+		grid-template-columns: 480px auto;
+		height: 100vh;
+	}
+
+	.card {
+		grid-column: 1 / 2;
+	}
+
+	.output {
+		grid-column: 2 / 3;
+		height: 100vh;
+	}
+}
+
+.card__container {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 420px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.card__footer {
+	margin-top: auto;
+}
+
+form label+label {
+	margin-top: 15px;
+}
+
+img {
+	max-width: 100%;
+}
+
+input[name="amount"] {
+	width: 100px;
 }
 
 .output__container {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  line-height: 1.4;
+	font-size: 18px;
+	line-height: 1.4;
+	overflow: auto;
+	height: 100%;
+	padding-right: 15px;
 }
 
-.how summary {
-  cursor: pointer;
+.output__container p {
+	margin: 0;
 }
 
-.links {
-  line-height: 2;
-}
-
-.link {
-  display: block;
-  position: relative;
-}
-.link__subtitle {
-  font-size: .8rem;
+.output__container p+p {
+	margin-top: 20px;
 }
 
 button,
 select,
 input {
-  background-color: var(--background);
-  color: var(--text);
-  border-radius: 4px;
-  padding: .8rem 15px;
-  border: 0;
+	background-color: var(--background);
+	color: var(--text);
+	border-radius: 4px;
+	padding: .8rem 15px;
+	border: 0;
 }
 
 select {
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23252525%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
-  background-repeat: no-repeat, repeat;
-  background-position: right .7em top 50%, 0 0;
-  background-size: .65em auto, 100%;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23252525%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	width: 100%;
 }
+
 /* Hide arrow icon in IE browsers */
 select::-ms-expand {
-  display: none;
+	display: none;
 }
 
 @media (prefers-color-scheme: dark) {
-  select {
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
-  }
+	select {
+		background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+	}
 }
 
 select option {
-  font-weight:normal;
-  padding: .8rem 15px;
+	font-weight: normal;
+	padding: .8rem 15px;
 }
 
 button {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 button[type=submit] {
-  background-color: var(--color-blue);
-  color: var(--color-light-2);
+	background-color: var(--color-blue);
+	color: var(--color-light-2);
+}
+
+.control {
+	display: block;
+}
+
+.control label {
+	display: block;
+	margin-bottom: 5px;
+	max-width: 300px;
 }

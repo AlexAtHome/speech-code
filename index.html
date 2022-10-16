@@ -1,169 +1,149 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Генератор бессмысленного текста на русском языке</title>
-    <style>
-      * { box-sizing: border-box; }
-      :root {
-        --color-pinky: #F181CB;
-        --color-purple: #C4A0FD;
-        --color-blue: #3b70da;
-        --color-dark-1: #252525;
-        --color-dark-2: #333333;
-        --color-light-1: #eaeaea;
-        --color-light-2: #fefefe;
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Генератор бессмысленного текста на русском языке</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<main>
+			<section class="card">
+				<div class="card__container">
+					<h1>Text Generator</h1>
+					<p>Generates somewhat meaningful texts.</p>
 
-        --background: var(--color-light-1);
-        --card-background: var(--color-light-2);
-        --text: var(--color-dark-1);
-        --text-invert: var(--color-light-2);
-        --link-color: var(--color-pinky);
-        --link-color-visited: var(--color-purple);
-      }
-      @media (prefers-color-scheme: dark) {
-        html:root {
-          --background: var(--color-dark-2);
-          --card-background: var(--color-dark-1);
-          --text: var(--color-light-2);
-          --text-invert: var(--color-dark-1);
-        }
-      }
-      html { scroll-behavior: smooth; scrollbar-width: thin; }
-      body {
-        padding: 0;
-        margin: 0;
-        background-color: var(--background);
-        color: var(--text);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 1rem;
-      }
-      a { color: var(--link-color); }
-      a:visited { color: var(--link-color-visited); }
-      .card { background-color: var(--card-background); padding: 30px; border-radius: 5px; }
-      main { width: 100%; flex-grow: 1; max-width: 730px; margin: 0 auto; }
-      img { max-width: 100%; }
-			form { display: flex; align-items: center; flex-wrap: wrap; gap: 10px;}
-			input[name=amount] { width: 100px; }
-      footer { text-align: center; }
-      main, footer { padding: 15px; }
-    </style>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <main>
-      <section class="card card_generator">
-        <h1>Генератор текста</h1>
-        <p>Создаёт грамотно построенные, но бессмысленные тексты.</p>
+					<form name="generator" class="form">
+						<div class="control">
+							<label for="lang">Language</label>
+							<select name="lang" id="lang" value="ru" required>
+								<option value="ru">Russian</option>
+								<option value="en">English</option>
+							</select>
+						</div>
 
-        <form name="generator">
-					<select name="lang" id="lang" value="ru" required>
-						<option value="ru">Русский язык</option>
-						<option value="en">Английский язык</option>
-					</select>
-          <select name="type" id="type" value="text" required>
-            <option value="text">Текст (по абзацам)</option>
-            <option value="char">Текст (по кол-ву символов)</option>
-            <option value="sentence">Предложение</option>
-            <option value="paragraph">Абзац</option>
-          </select>
-          <input type="number" name="amount" min="1" placeholder="Количество" required />
-          <button type="submit">Создать текст!</button>
-          <button type="button" id="copy" hidden>Копировать</button>
-        </form>
+						<div class="control">
+							<label for="type">What to generate</label>
+							<select name="type" id="type" value="text" required>
+								<option value="text">Text (by paragraphs)</option>
+								<option value="char">Text (by symbols amount)</option>
+								<option value="sentence">Sentences</option>
+								<option value="paragraph">Paragraphs</option>
+							</select>
+						</div>
 
-        <div class="output" hidden>
-          <div id="output" class="output__container"></div>
-        </div>
-      </section>
+						<div class="control">
+							<label for="amount">Amount</label>
+							<input
+								type="number"
+								name="amount"
+								id="amount"
+								min="1"
+								value="3"
+								required
+							/>
+						</div>
 
-      <section class="how">
-        <details>
-          <summary>Что это за магия? Почему такой складный текст?</summary>
+						<footer class="form__footer">
+							<button type="submit">Generate</button>
+							<button type="button" id="copy">Copy</button>
+						</footer>
+					</form>
 
-          <div class="card">
-            <img loading="lazy" src="https://raw.githubusercontent.com/mamoruuu/speech-code/main/.github/sample.jpg" alt="" />
-            <p>Как-то вот так.</p>
+					<footer class="card__footer">
+						<nav>
+							<ul class="card__links">
+								<li>
+									<a
+										href="https://www.npmjs.com/package/speech-code"
+										target="_blank"
+									>
+										<img
+											alt="npm"
+											src="https://img.shields.io/npm/v/speech-code?color=%23c02f31&style=for-the-badge"
+										/>
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://marketplace.visualstudio.com/items?itemName=mamoru.vscode-fish-text"
+										target="_blank"
+									>
+										<img
+											alt="Visual Studio Marketplace"
+											src="https://img.shields.io/visual-studio-marketplace/v/mamoru.vscode-fish-text?color=%230066b8&label=vscode&style=for-the-badge"
+										/>
+									</a>
+								</li>
+								<li>
+									<a href="https://atom.io/packages/fish-text" target="_blank">
+										<img
+											alt="Atom Editor Package"
+											src="https://img.shields.io/apm/v/fish-text?color=%234db67f&label=Atom&style=for-the-badge"
+										/>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</footer>
+				</div>
+			</section>
+			<div class="output" hidden>
+				<div id="output" class="output__container"></div>
+			</div>
+		</main>
 
-            <p>И всё это работает силами npm-пакета <code>speech-code</code>.</p>
+		<script src="./index.js" async></script>
+		<script>
+			"use strict";
 
-            <p>Также есть плагины для Visual Studio Code и Atom, которые делают ровно то же самое!</p>
+			const form = document.forms["generator"];
+			const outputContainer = document.getElementById("output");
+			const copyButton = document.getElementById("copy");
 
-            <ul class="links">
-              <li class="link">
-                <a href="https://marketplace.visualstudio.com/items?itemName=mamoru.vscode-fish-text" target="_blank" class="link__title">Visual Studio Code</a>
-                <a class="link__subtitle" href="vscode:extension/mamoru.vscode-fish-text"><code>(mamoru.vscode-fish-text)</code></a>
-              </li>
-              <li class="link">
-                <a href="https://atom.io/packages/fish-text" target="_blank" class="link__title">Atom</a>
-                <a class="link__subtitle" href="atom://settings-view/show-package?package=fish-text"><code>(fish-text)</code></a>
-              </li>
-              <li class="link">
-                <a href="https://www.npmjs.com/package/speech-code" target="_blank" class="link__title">NPM</a>
-                <span class="link__subtitle"><code>(npm i speech-code)</code></span>
-              </li>
-            </ul>
-          </div>
-        </details>
-      </section>
-    </main>
+			function copyText() {
+				navigator.clipboard.writeText(outputContainer.innerText);
+			}
 
-    <footer>
-      <a href="https://github.com/AlexAtHome/speech-code" target="_blank">Форкни эту штуку в Гитхабе!</a>
-    </footer>
+			form.addEventListener("change", (event) => {
+				const typeControl = form.elements.type;
+				const amountControl = form.elements.amount;
 
-    <script src="./index.js" async></script>
-    <script>
-      "use strict"
+				amountControl.disabled = typeControl.value === "sentence";
+			});
 
-      const form = document.forms["generator"]
-      const outputContainer = document.getElementById('output')
-      const copyButton = document.getElementById('copy')
+			form.addEventListener("submit", (event) => {
+				event.preventDefault();
+				outputContainer.parentElement.hidden = true;
+				const lang = form.elements.lang.value;
+				const amount = form.elements.amount.value;
+				switch (form.elements.type.value) {
+					case "sentence":
+						outputContainer.innerText = getSentence(lang);
+						break;
+					case "text":
+						outputContainer.innerHTML = getText(amount, lang)
+							.split("\n")
+							.reduce((text, part) => {
+								return `${text}<p>${part}</p>`;
+							}, "");
+						break;
+					case "char":
+						outputContainer.innerText = getCharacters(amount, lang);
+						break;
+					case "paragraph":
+						outputContainer.innerText = getParagraph(amount, lang);
+						break;
+					default:
+						return;
+				}
+				outputContainer.parentElement.hidden = false;
+				copyButton.hidden = false;
+			});
 
-      function copyText() {
-        copy(outputContainer.innerText)
-      }
-
-      form.addEventListener('change', (event) => {
-        const typeControl = form.children.type
-        const amountControl = form.children.amount
-
-        amountControl.disabled = typeControl.value === 'sentence'
-      })
-
-      form.addEventListener("submit", (event) => {
-        event.preventDefault()
-        outputContainer.parentElement.hidden = true
-				const lang = form.children.lang.value
-        const amount = form.children.amount.value
-        switch (form.children.type.value) {
-          case 'sentence':
-            outputContainer.innerText = getSentence(lang)
-            break;
-          case 'text':
-            outputContainer.innerText = getText(amount, lang)
-            break;
-          case 'char':
-            outputContainer.innerText = getCharacters(amount, lang)
-            break;
-          case 'paragraph':
-            outputContainer.innerText = getParagraph(amount, lang)
-            break;
-          default:
-            return;
-        }
-        outputContainer.parentElement.hidden = false
-        copyButton.hidden = false
-      });
-
-      copyButton.addEventListener('click', function (event) {
-        copyText(output.innerText)
-      })
-
-    </script>
-  </body>
+			copyButton.addEventListener("click", function (event) {
+				copyText(output.innerText);
+			});
+		</script>
+	</body>
 </html>
