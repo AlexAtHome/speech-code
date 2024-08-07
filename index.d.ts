@@ -14,17 +14,20 @@ export type Lang = 'ru' | 'en';
  * @param language The language to generate a text in
  */
 export function getText(paragraphs?: number, language?: Lang): string;
+
 /**
  * Returns a paragraph consisting of given number of sentences
  * @param sentences The number of sentences. Default is 3.
  * @param language The language to generate a text in
  */
 export function getParagraph(sentences?: number, language?: Lang): string;
+
 /**
  * Returns a single generated sentence
  * @param language The language to generate a text in
  */
 export function getSentence(language?: Lang): string;
+
 /**
  * Returns a paragraph with specified number of characters.
  *

@@ -1,149 +1,132 @@
 <!DOCTYPE html>
 <html lang="ru">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Soviet-like Text Generator</title>
-		<link rel="stylesheet" href="./style.css" />
-	</head>
-	<body>
-		<main>
-			<section class="card">
-				<div class="card__container">
-					<h1>Text Generator</h1>
-					<p>Generates somewhat meaningful texts.</p>
 
-					<form name="generator" class="form">
-						<div class="control">
-							<label for="lang">Language</label>
-							<select name="lang" id="lang" value="ru" required>
-								<option value="ru">Russian</option>
-								<option value="en">English</option>
-							</select>
-						</div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Soviet-like Text Generator</title>
+	<link rel="stylesheet" href="./style.css" />
+</head>
 
-						<div class="control">
-							<label for="type">What to generate</label>
-							<select name="type" id="type" value="text" required>
-								<option value="text">Text (by paragraphs)</option>
-								<option value="char">Text (by symbols amount)</option>
-								<option value="sentence">Sentences</option>
-								<option value="paragraph">Paragraphs</option>
-							</select>
-						</div>
+<body>
+	<main>
+		<section class="card">
+			<div class="card__container">
+				<h1>Text Generator</h1>
+				<p>Generates somewhat meaningful texts.</p>
 
-						<div class="control">
-							<label for="amount">Amount</label>
-							<input
-								type="number"
-								name="amount"
-								id="amount"
-								min="1"
-								value="3"
-								required
-							/>
-						</div>
+				<form name="generator" class="form">
+					<div class="control">
+						<label for="lang">Language</label>
+						<select name="lang" id="lang" value="ru" required>
+							<option value="ru">Russian</option>
+							<option value="en">English</option>
+						</select>
+					</div>
 
-						<footer class="form__footer">
-							<button type="submit">Generate</button>
-							<button type="button" id="copy">Copy</button>
-						</footer>
-					</form>
+					<div class="control">
+						<label for="type">What to generate</label>
+						<select name="type" id="type" value="text" required>
+							<option value="text">Text (by paragraphs)</option>
+							<option value="char">Text (by symbols amount)</option>
+							<option value="sentence">Sentences</option>
+							<option value="paragraph">Paragraphs</option>
+						</select>
+					</div>
 
-					<footer class="card__footer">
-						<nav>
-							<ul class="card__links">
-								<li>
-									<a
-										href="https://www.npmjs.com/package/speech-code"
-										target="_blank"
-									>
-										<img
-											alt="npm"
-											src="https://img.shields.io/npm/v/speech-code?color=%23c02f31&style=for-the-badge"
-										/>
-									</a>
-								</li>
-								<li>
-									<a
-										href="https://marketplace.visualstudio.com/items?itemName=mamoru.vscode-fish-text"
-										target="_blank"
-									>
-										<img
-											alt="Visual Studio Marketplace"
-											src="https://img.shields.io/visual-studio-marketplace/v/mamoru.vscode-fish-text?color=%230066b8&label=vscode&style=for-the-badge"
-										/>
-									</a>
-								</li>
-								<li>
-									<a href="https://atom.io/packages/fish-text" target="_blank">
-										<img
-											alt="Atom Editor Package"
-											src="https://img.shields.io/apm/v/fish-text?color=%234db67f&label=Atom&style=for-the-badge"
-										/>
-									</a>
-								</li>
-							</ul>
-						</nav>
+					<div class="control">
+						<label for="amount">Amount</label>
+						<input type="number" name="amount" id="amount" min="1" value="3" required />
+					</div>
+
+					<footer class="form__footer">
+						<button type="submit">Generate</button>
+						<button type="button" id="copy">Copy</button>
 					</footer>
-				</div>
-			</section>
-			<div class="output" hidden>
-				<div id="output" class="output__container"></div>
+				</form>
+
+				<footer class="card__footer">
+					<nav>
+						<ul class="card__links">
+							<li>
+								<a href="https://www.npmjs.com/package/speech-code" target="_blank">
+									<img alt="npm"
+										src="https://img.shields.io/npm/v/speech-code?color=%23c02f31&style=for-the-badge" />
+								</a>
+							</li>
+							<li>
+								<a href="https://marketplace.visualstudio.com/items?itemName=mamoru.vscode-fish-text"
+									target="_blank">
+									<img alt="Visual Studio Marketplace"
+										src="https://img.shields.io/visual-studio-marketplace/v/mamoru.vscode-fish-text?color=%230066b8&label=vscode&style=for-the-badge" />
+								</a>
+							</li>
+							<li>
+								<a href="https://atom.io/packages/fish-text" target="_blank">
+									<img alt="Atom Editor Package"
+										src="https://img.shields.io/apm/v/fish-text?color=%234db67f&label=Atom&style=for-the-badge" />
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</footer>
 			</div>
-		</main>
+		</section>
+		<div class="output" hidden>
+			<div id="output" class="output__container"></div>
+		</div>
+	</main>
 
-		<script src="./index.js" async></script>
-		<script>
-			"use strict";
+	<script src="./index.js" async></script>
+	<script>
+		const form = document.forms["generator"];
+		const outputContainer = document.getElementById("output");
+		const copyButton = document.getElementById("copy");
 
-			const form = document.forms["generator"];
-			const outputContainer = document.getElementById("output");
-			const copyButton = document.getElementById("copy");
+		function copyText() {
+			navigator.clipboard.writeText(outputContainer.innerText);
+		}
 
-			function copyText() {
-				navigator.clipboard.writeText(outputContainer.innerText);
+		form.addEventListener("change", (event) => {
+			const typeControl = form.elements.type;
+			const amountControl = form.elements.amount;
+
+			amountControl.disabled = typeControl.value === "sentence";
+		});
+
+		form.addEventListener("submit", (event) => {
+			event.preventDefault();
+			outputContainer.parentElement.hidden = true;
+			const lang = form.elements.lang.value;
+			const amount = form.elements.amount.value;
+			switch (form.elements.type.value) {
+				case "sentence":
+					outputContainer.innerText = getSentence(lang);
+					break;
+				case "text":
+					outputContainer.innerHTML = getText(amount, lang)
+						.split("\n")
+						.reduce((text, part) => {
+							return `${text}<p>${part}</p>`;
+						}, "");
+					break;
+				case "char":
+					outputContainer.innerText = getCharacters(amount, lang);
+					break;
+				case "paragraph":
+					outputContainer.innerText = getParagraph(amount, lang);
+					break;
+				default:
+					return;
 			}
+			outputContainer.parentElement.hidden = false;
+			copyButton.hidden = false;
+		});
 
-			form.addEventListener("change", (event) => {
-				const typeControl = form.elements.type;
-				const amountControl = form.elements.amount;
+		copyButton.addEventListener("click", function (event) {
+			copyText(output.innerText);
+		});
+	</script>
+</body>
 
-				amountControl.disabled = typeControl.value === "sentence";
-			});
-
-			form.addEventListener("submit", (event) => {
-				event.preventDefault();
-				outputContainer.parentElement.hidden = true;
-				const lang = form.elements.lang.value;
-				const amount = form.elements.amount.value;
-				switch (form.elements.type.value) {
-					case "sentence":
-						outputContainer.innerText = getSentence(lang);
-						break;
-					case "text":
-						outputContainer.innerHTML = getText(amount, lang)
-							.split("\n")
-							.reduce((text, part) => {
-								return `${text}<p>${part}</p>`;
-							}, "");
-						break;
-					case "char":
-						outputContainer.innerText = getCharacters(amount, lang);
-						break;
-					case "paragraph":
-						outputContainer.innerText = getParagraph(amount, lang);
-						break;
-					default:
-						return;
-				}
-				outputContainer.parentElement.hidden = false;
-				copyButton.hidden = false;
-			});
-
-			copyButton.addEventListener("click", function (event) {
-				copyText(output.innerText);
-			});
-		</script>
-	</body>
 </html>

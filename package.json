@@ -1,29 +1,30 @@
 {
-    "name": "speech-code",
-    "description": "Russian text generator",
-    "author": "Alexander Bolotskov <r3disrussian@gmail.com>",
-    "keywords": [
-        "russian",
-        "text",
-        "speech",
-        "lorem ipsum",
-        "lorem",
-        "loremru",
-        "ru",
-        "russia"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/mamoruuu/speech-code.git"
-    },
-    "version": "1.4.1",
-    "main": "index.js",
-    "license": "MIT",
-    "types": "index.d.ts",
-    "bin": {
-        "speech-code": "bin/speech-code"
-    },
-    "devDependencies": {
-        "prettier": "^2.2.0"
-    }
+	"name": "speech-code",
+	"description": "Russian text generator",
+	"author": "Alexander Bolotskov <mamoruuu@proton.me>",
+	"type": "module",
+	"keywords": [
+		"russian",
+		"text",
+		"speech",
+		"lorem ipsum",
+		"lorem",
+		"loremru",
+		"ru",
+		"russia"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mamoruuu/speech-code.git"
+	},
+	"version": "1.4.1",
+	"main": "index.js",
+	"license": "MIT",
+	"types": "index.d.ts",
+	"bin": {
+		"speech-code": "bin/speech-code"
+	},
+	"devDependencies": {
+		"prettier": "^2.2.0"
+	}
 }

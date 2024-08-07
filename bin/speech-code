@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 const {
-  getText,
-  getParagraph,
-  getSentence,
-  getCharacters,
+	getText,
+	getParagraph,
+	getSentence,
+	getCharacters,
 } = require("../index");
 
 /**
@@ -12,12 +12,12 @@ const {
  */
 let [type = "paragraph", amount = 3, lang = 'ru'] = process.argv.slice(2);
 if (amount !== 3) {
-  amount = Number(amount);
+	amount = Number(amount);
 
-  if (isNaN(amount)) {
-    console.error("The second argument should be a number!");
-    process.exit(1)
-  }
+	if (isNaN(amount)) {
+		console.error("The second argument should be a number!");
+		process.exit(1)
+	}
 }
 
 if (!['ru', 'en'].includes(lang)) {
@@ -26,39 +26,39 @@ if (!['ru', 'en'].includes(lang)) {
 }
 
 switch (type.toLowerCase()) {
-  case "sentence":
-  case "s":
-    console.log(getSentence(lang));
+	case "sentence":
+	case "s":
+		console.log(getSentence(lang));
 		break;
-  case "text":
-  case "t":
-    console.log(getText(amount, lang));
+	case "text":
+	case "t":
+		console.log(getText(amount, lang));
 		break
-  case "paragraph":
-  case "p":
-    console.log(getParagraph(amount, lang));
+	case "paragraph":
+	case "p":
+		console.log(getParagraph(amount, lang));
 		break
-  case "char":
-  case "c":
-    console.log(getCharacters(amount, lang));
+	case "char":
+	case "c":
+		console.log(getCharacters(amount, lang));
 		break
-  case "help":
-  case "h":
-    console.log("Usage:    speech-code [type] [amount] [lang]");
-    console.log("");
-    console.log(
-      "Supported types: `char` (`c`), `sentence` (`s`), `text` (`t`) and `paragraph` (`p`). Default is `paragraph`."
-    );
-    console.log(
-      "The second argument is the amount of paragraphs in text or sentences in paragraph. Doesn't work for `sentence` type. Default is 3."
-    );
+	case "help":
+	case "h":
+		console.log("Usage:    speech-code [type] [amount] [lang]");
+		console.log("");
+		console.log(
+			"Supported types: `char` (`c`), `sentence` (`s`), `text` (`t`) and `paragraph` (`p`). Default is `paragraph`."
+		);
+		console.log(
+			"The second argument is the amount of paragraphs in text or sentences in paragraph. Doesn't work for `sentence` type. Default is 3."
+		);
 		console.log("Supported languages: `ru`, `en`. Default is `ru`.")
-    break
-  default:
-    console.error("%cUnsupported generated text type!", "color:red");
-    console.log(
-      "Only `char` (`c`), `sentence` (`s`), `text` (`t`) and `paragraph` (`p`) are supported!"
-    );
-    process.exit(2)
+		break
+	default:
+		console.error("%cUnsupported generated text type!", "color:red");
+		console.log(
+			"Only `char` (`c`), `sentence` (`s`), `text` (`t`) and `paragraph` (`p`) are supported!"
+		);
+		process.exit(2)
 		break
 }
