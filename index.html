@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Soviet-like Text Generator</title>
-	<link rel="stylesheet" href="./style.css" />
+	<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -13,7 +13,10 @@
 		<section class="card">
 			<div class="card__container">
 				<h1>Text Generator</h1>
-				<p>Generates somewhat meaningful texts.</p>
+				<div>
+					<p>Generates somewhat meaningful texts.</p>
+					<p>Runs entirely in your browser!</p>
+				</div>
 
 				<form name="generator" class="form">
 					<div class="control">
@@ -41,7 +44,8 @@
 
 					<footer class="form__footer">
 						<button type="submit">Generate</button>
-						<button type="button" id="copy">Copy</button>
+						<button type="button" id="copy" popovertarget="feedback">Copy</button>
+						<div id="feedback" popover class="popover">Copied!</div>
 					</footer>
 				</form>
 
@@ -51,20 +55,14 @@
 							<li>
 								<a href="https://www.npmjs.com/package/speech-code" target="_blank">
 									<img alt="npm"
-										src="https://img.shields.io/npm/v/speech-code?color=%23c02f31&style=for-the-badge" />
+										src="https://img.shields.io/npm/v/speech-code?color=%23c02f31&style=for-the-badge">
 								</a>
 							</li>
 							<li>
 								<a href="https://marketplace.visualstudio.com/items?itemName=mamoru.vscode-fish-text"
 									target="_blank">
 									<img alt="Visual Studio Marketplace"
-										src="https://img.shields.io/visual-studio-marketplace/v/mamoru.vscode-fish-text?color=%230066b8&label=vscode&style=for-the-badge" />
-								</a>
-							</li>
-							<li>
-								<a href="https://atom.io/packages/fish-text" target="_blank">
-									<img alt="Atom Editor Package"
-										src="https://img.shields.io/apm/v/fish-text?color=%234db67f&label=Atom&style=for-the-badge" />
+										src="https://img.shields.io/visual-studio-marketplace/v/mamoru.vscode-fish-text?color=%230066b8&label=vscode&style=for-the-badge">
 								</a>
 							</li>
 						</ul>
@@ -77,8 +75,9 @@
 		</div>
 	</main>
 
-	<script src="./index.js" async></script>
-	<script>
+	<script type="module">
+		import {getSentence, getText, getCharacters, getParagraph} from "./index.js"
+
 		const form = document.forms["generator"];
 		const outputContainer = document.getElementById("output");
 		const copyButton = document.getElementById("copy");
@@ -90,7 +89,6 @@
 		form.addEventListener("change", (event) => {
 			const typeControl = form.elements.type;
 			const amountControl = form.elements.amount;
-
 			amountControl.disabled = typeControl.value === "sentence";
 		});
 
@@ -121,6 +119,8 @@
 			}
 			outputContainer.parentElement.hidden = false;
 			copyButton.hidden = false;
+			outputContainer.scrollIntoView()
+			outputContainer.scrollTo({top: 0, left: 0, behavior: 'smooth'})
 		});
 
 		copyButton.addEventListener("click", function (event) {

@@ -67,6 +67,7 @@ a:visited {
 main {
 	display: grid;
 	width: 100%;
+	position: relative;
 }
 
 .card {
@@ -102,22 +103,7 @@ main {
 .form__footer {
 	margin-top: 30px;
 	margin-bottom: 20px;
-}
-
-@media screen and (min-width: 990px) {
-	main {
-		grid-template-columns: 480px auto;
-		height: 100vh;
-	}
-
-	.card {
-		grid-column: 1 / 2;
-	}
-
-	.output {
-		grid-column: 2 / 3;
-		height: 100vh;
-	}
+	position: relative;
 }
 
 .card__container {
@@ -150,7 +136,9 @@ input[name="amount"] {
 	line-height: 1.4;
 	overflow: auto;
 	height: 100%;
-	padding-right: 15px;
+	scroll-margin-top: 20px;
+	margin: auto;
+	max-width: 760px;
 }
 
 .output__container p {
@@ -214,4 +202,52 @@ button[type=submit] {
 	display: block;
 	margin-bottom: 5px;
 	max-width: 300px;
+}
+
+@media screen and (min-width: 990px) {
+	main {
+		grid-template-columns: 340px auto;
+	}
+
+	.card {
+		grid-column: 1 / 2;
+		height: 100vh;
+		position: sticky;
+		top: 0;
+	}
+
+	.output {
+		grid-column: 2 / 3;
+		margin: 50px 0;
+		padding: 0 20px;
+	}
+
+	.output__container {
+		scroll-margin-top: 50px;
+	}
+}
+
+.popover {
+	position: absolute;
+	inset: auto;
+	margin-top: 10px;
+	border: 2px solid var(--color-blue);
+	border-radius: 5px;
+	padding: 10px 15px;
+	animation: .25s ease-out popover;
+	will-change: transform;
+}
+
+@keyframes popover {
+	0% {
+		transform: scale(0);
+	}
+
+	70% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
 }
