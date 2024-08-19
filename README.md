@@ -54,3 +54,14 @@ You can also specify the language of the text in an optional third argument. Acc
 npx speech-code text 3 ru
 npx speech-code sentence 2 en
 ```
+
+### browser
+
+```html
+<script type="module">
+    import { getParagraph } from 'https://esm.run/speech-code@v2.0.0/index.js'
+
+    const paragraph = getParagraph(5)
+    console.log(paragraph)
+</script>
+```
