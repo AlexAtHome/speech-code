@@ -1,5 +1,3 @@
-"use strict";
-
 const sentenceParts = {
 	ru: [
 		[
@@ -130,7 +128,7 @@ const randomValueFrom = (array) => array[~~(array.length * Math.random())];
 /**
  * Выстраивает предложение
  */
-const getSentence = (lang = 'ru') => {
+export const getSentence = (lang = 'ru') => {
 	const result = sentenceParts[lang].map(part => randomValueFrom(part));
 	if (result[0].endsWith("!") || result[0].endsWith(".")) {
 		result[1] = result[1].replace(/^./, result[1].slice(0, 1).toUpperCase());
@@ -142,7 +140,7 @@ const getSentence = (lang = 'ru') => {
  * Строит абзац из предложений
  * @param {number} sentences Число предложений в абзаце
  */
-const getParagraph = (sentences = 3, lang = 'ru') => {
+export const getParagraph = (sentences = 3, lang = 'ru') => {
 	let result = "";
 	for (let i = 0; i < sentences; i++) {
 		if (i > 0) result += " ";
@@ -155,7 +153,7 @@ const getParagraph = (sentences = 3, lang = 'ru') => {
  * Строит текст
  * @param {number} paragraphs Число абзацев в тексте
  */
-const getText = (paragraphs = 3, lang = 'ru') => {
+export const getText = (paragraphs = 3, lang = 'ru') => {
 	let result = "";
 	for (let i = 0; i < paragraphs; i++) {
 		if (i > 0) result += "\n";
@@ -169,7 +167,7 @@ const getText = (paragraphs = 3, lang = 'ru') => {
  * Строит абзац с определённым количеством символов
  * @param {number} chars Приблизительное количество символов в абзаце
  */
-const getCharacters = (chars = 50, lang = 'ru') => {
+export const getCharacters = (chars = 50, lang = 'ru') => {
 	const maxRestarts = 10;
 	let restarts = 0;
 
@@ -205,12 +203,3 @@ const getCharacters = (chars = 50, lang = 'ru') => {
 	}
 	return result;
 };
-
-if (typeof module !== "undefined") {
-	module.exports = {
-		getParagraph,
-		getText,
-		getSentence,
-		getCharacters,
-	};
-}

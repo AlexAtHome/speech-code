@@ -4,6 +4,8 @@ Generates a random russian text using russian universal speech code that looks l
 
 ![Universal speech code table](./.github/sample.jpg)
 
+Runs both in Node.js and browsers.
+
 ## Installation
 
 ```

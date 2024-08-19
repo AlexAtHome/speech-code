@@ -1,7 +1,7 @@
 {
 	"name": "speech-code",
-	"description": "Russian text generator",
-	"author": "Alexander Bolotskov <mamoruuu@proton.me>",
+	"description": "The text generator that uses the soviet speech code. No LLM required!",
+	"author": "Aleksandr Bolotskov <mamoruuu@proton.me>",
 	"type": "module",
 	"keywords": [
 		"russian",

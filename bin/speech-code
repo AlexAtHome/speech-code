@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
-const {
+import {
 	getText,
 	getParagraph,
 	getSentence,
 	getCharacters,
-} = require("../index");
+} from '../index.js'
 
 /**
  * Type can be 'text' or 'paragraph'
  */
 let [type = "paragraph", amount = 3, lang = 'ru'] = process.argv.slice(2);
 if (amount !== 3) {
-	amount = Number(amount);
+	amount = +amount;
 
 	if (isNaN(amount)) {
 		console.error("The second argument should be a number!");
@@ -42,6 +42,7 @@ switch (type.toLowerCase()) {
 	case "c":
 		console.log(getCharacters(amount, lang));
 		break
+	case "-h":
 	case "help":
 	case "h":
 		console.log("Usage:    speech-code [type] [amount] [lang]");
@@ -57,7 +58,7 @@ switch (type.toLowerCase()) {
 	default:
 		console.error("%cUnsupported generated text type!", "color:red");
 		console.log(
-			"Only `char` (`c`), `sentence` (`s`), `text` (`t`) and `paragraph` (`p`) are supported!"
+			"Only `char` (`c`), `sentence` (`s`), `text` (`t`), `paragraph` (`p`) and `help` (`h`) are supported!"
 		);
 		process.exit(2)
 		break
